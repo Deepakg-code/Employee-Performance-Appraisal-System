@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: employee-performance-appraisal-api
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/epas_db?createDatabaseIfNotExist=true
+    username: root
+    password: root
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+
+server:
+  port: 8081
