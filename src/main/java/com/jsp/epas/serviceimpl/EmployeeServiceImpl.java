@@ -1,6 +1,7 @@
 package com.jsp.epas.serviceimpl;
 
 import com.jsp.epas.entity.Employee;
+import com.jsp.epas.enums.Rating;
 import com.jsp.epas.exception.EmployeeNotFoundException;
 import com.jsp.epas.repository.EmployeeRepository;
 import com.jsp.epas.requestdto.EmployeeRequest;
@@ -20,7 +21,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     private Employee mapToEmployee(EmployeeRequest employeeRequest, Employee employee) {
         employee.setEmployeeName(employeeRequest.getEmployeeName());
-        employee.setRating(employeeRequest.getRating());
+        employee.setRating(Rating.valueOf(String.valueOf(employeeRequest.getRating())));
         return employee;
     }
 
@@ -28,7 +29,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         return EmployeeResponse.builder()
                 .employeeId(employee.getEmployeeId())
                 .employeeName(employee.getEmployeeName())
-                .rating(employee.getRating())
+                .rating(Rating.valueOf(String.valueOf(employee.getRating())))
                 .build();
     }
 
