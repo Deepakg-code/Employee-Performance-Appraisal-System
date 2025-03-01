@@ -1,5 +1,6 @@
 package com.jsp.epas.responsedto;
 
+import com.jsp.epas.enums.Rating;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,5 +14,5 @@ public class EmployeeResponse {
 
     private int employeeId;
     private String employeeName;
-    private String rating;
+    private Rating rating;
 }

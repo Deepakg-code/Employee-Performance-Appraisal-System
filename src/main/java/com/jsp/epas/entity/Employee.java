@@ -1,9 +1,7 @@
 package com.jsp.epas.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.jsp.epas.enums.Rating;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,5 +19,7 @@ public class Employee {
     private int employeeId;
 
     private String employeeName;
-    private String rating;
+
+    @Enumerated(EnumType.STRING)
+    private Rating rating;
 }
