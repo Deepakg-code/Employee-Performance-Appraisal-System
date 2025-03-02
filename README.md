@@ -93,6 +93,18 @@ The application will start at `http://localhost:8081` by default.
 | POST   | `/appraisal/{employeeId}`      | Create a new appraisal           |
 | DELETE | `/appraisal/{appraisalId}`     | Delete an appraisal              |
 
+## Standard Percentage
+
+The system uses the following standard percentage distribution, which can be updated in certain situations:
+
+| Category ID | Rating | Standard Percentage |
+|------------|--------|---------------------|
+| 1          | A      | 10%                 |
+| 2          | B      | 20%                 |
+| 3          | C      | 40%                 |
+| 4          | D      | 20%                 |
+| 5          | E      | 10%                 |
+
 ## Testing
 
 You can test the API using Postman or any API testing tool by sending requests to the provided endpoints.
