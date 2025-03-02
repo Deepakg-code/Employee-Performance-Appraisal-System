@@ -110,10 +110,8 @@ The system uses the following standard percentage distribution, which can be upd
 You can test the API using Postman or any API testing tool by sending requests to the provided endpoints.
 
 ### Unit Tests Is Included Only For PerformanceServiceImplTest.java
-Run unit tests using:
-```bash
-mvn test
-```
+To run unit tests, execute
+EmployeePerformanceAppraisalApiApplicationTests.java in IntelliJ IDEA.
 
 ## License
 This project is open-source and available for learning and development purposes.
