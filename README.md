@@ -33,7 +33,7 @@ To run this project, ensure you have:
 - Java 21 or later installed
 - Maven 3.8.x or above
 - MySQL installed and configured
-- Any preferred IDE (IntelliJ IDEA, Eclipse, Spring Tool Suite)
+- IntelliJ IDEA
 
 ## Installation
 ### 1. Clone the Repository:
