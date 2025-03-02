@@ -94,6 +94,9 @@ The application will start at `http://localhost:8081` by default.
 | DELETE | `/appraisal/{appraisalId}`     | Delete an appraisal              |
 
 ## Testing
+
+You can test the API using Postman or any API testing tool by sending requests to the provided endpoints.
+
 ### Unit Tests
 Run unit tests using:
 ```bash
