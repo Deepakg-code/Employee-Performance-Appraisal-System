@@ -22,7 +22,7 @@ public class PerformanceServiceImpl implements PerformanceService {
     private final AppraisalRepository appraisalRepository;
 
     // Threshold for significant deviation that requires adjustment
-    private static final double DEVIATION_THRESHOLD = 5.0;
+    private static final double DEVIATION_THRESHOLD = 2.5;
 
     @Override
     public Map<String, Object> calculatePerformanceMetrics() {
