@@ -3,10 +3,12 @@ package com.jsp.epas.serviceimpl;
 import com.jsp.epas.entity.Employee;
 import com.jsp.epas.enums.Rating;
 import com.jsp.epas.exception.EmployeeNotFoundException;
+import com.jsp.epas.repository.AppraisalRepository;
 import com.jsp.epas.repository.EmployeeRepository;
 import com.jsp.epas.requestdto.EmployeeRequest;
 import com.jsp.epas.responsedto.EmployeeResponse;
 import com.jsp.epas.service.EmployeeService;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,7 @@ import java.util.stream.Collectors;
 public class EmployeeServiceImpl implements EmployeeService {
 
     private final EmployeeRepository employeeRepository;
+    private final AppraisalRepository appraisalRepository;
 
     private Employee mapToEmployee(EmployeeRequest employeeRequest, Employee employee) {
         employee.setEmployeeName(employeeRequest.getEmployeeName());
@@ -64,13 +67,29 @@ public class EmployeeServiceImpl implements EmployeeService {
         return mapToEmployeeResponse(employee);
     }
 
+    @Transactional
     @Override
-    public EmployeeResponse deleteEmployeeById(int employeeId) {
+    public void deleteEmployeeById(int employeeId) {
         Employee employee = employeeRepository.findById(employeeId)
-                .orElseThrow(() -> new EmployeeNotFoundException("Employee not found by id"));
-        employeeRepository.deleteById(employee.getEmployeeId());
+                .orElseThrow(() -> new EmployeeNotFoundException("Employee not found"));
+
+        appraisalRepository.deleteByEmployee(employee);
+
+        employeeRepository.delete(employee);
+    }
+
+
+    @Override
+    public EmployeeResponse updateEmployeeRating(int employeeId, String newRating) {
+        Employee employee = employeeRepository.findById(employeeId)
+                .orElseThrow(() -> new EmployeeNotFoundException("Employee not found"));
+
+        employee.setRating(Rating.valueOf(newRating));
+        employeeRepository.save(employee);
+
         return mapToEmployeeResponse(employee);
     }
+
 
 
 }
