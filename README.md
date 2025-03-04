@@ -82,6 +82,7 @@ The application will start at `http://localhost:8081` by default.
 | GET    | `/employee/{employeeId}`       | Get employee details by ID       |
 | GET    | `/employees`                   | Get all employees                |
 | PUT    | `/employee/{employeeId}`       | Update employee details          |
+| PUT    | `/employee/{id}/rating`        | Update employee rating           |
 | DELETE | `/employee/{employeeId}`       | Delete an employee               |
 | POST   | `/category`                    | Add a new category               |
 | GET    | `/category/{id}`               | Get category by ID               |
