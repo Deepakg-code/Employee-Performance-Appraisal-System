@@ -15,5 +15,7 @@ public interface EmployeeService {
 
     EmployeeResponse updateEmployeeById(int employeeId, EmployeeRequest employeeRequest);
 
-    EmployeeResponse deleteEmployeeById(int employeeId);
+    void deleteEmployeeById(int employeeId);
+
+    EmployeeResponse updateEmployeeRating(int id, String newRating);
 }
