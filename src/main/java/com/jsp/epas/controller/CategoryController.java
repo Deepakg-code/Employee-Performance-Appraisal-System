@@ -26,25 +26,25 @@ public class CategoryController {
         return responseBuilder.success(HttpStatus.CREATED, "Category Created", categoryResponse);
     }
 
-    @GetMapping("category/{id}")
+    @GetMapping("/category/{id}")
     public ResponseEntity<ResponseStructure<CategoryResponse>> findCategoryById(@PathVariable int id) {
         CategoryResponse categoryResponse = categoryService.findCategoryById(id);
         return responseBuilder.success(HttpStatus.FOUND, "Category Found", categoryResponse);
     }
 
-    @GetMapping("category")
+    @GetMapping("/category")
     public ResponseEntity<ResponseStructure<List<CategoryResponse>>> findAllCategories() {
         List<CategoryResponse> categoryResponses = categoryService.findAllCategory();
         return responseBuilder.success(HttpStatus.OK, "Categories Retrieved", categoryResponses);
     }
 
-    @PutMapping("category/{id}")
+    @PutMapping("/category/{id}")
     public ResponseEntity<ResponseStructure<CategoryResponse>> updateCategoryById(@PathVariable int id, @RequestBody CategoryRequest categoryRequest) {
         CategoryResponse categoryResponse = categoryService.updateCategoryById(id, categoryRequest);
         return responseBuilder.success(HttpStatus.OK, "Category Updated", categoryResponse);
     }
 
-    @DeleteMapping("category/{id}")
+    @DeleteMapping("/category/{id}")
     public ResponseEntity<ResponseStructure<CategoryResponse>> deleteCategoryById(@PathVariable int id) {
         CategoryResponse categoryResponse = categoryService.deleteCategoryById(id);
         return responseBuilder.success(HttpStatus.OK, "Category Deleted", categoryResponse);
