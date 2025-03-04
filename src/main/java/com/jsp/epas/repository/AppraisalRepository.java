@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface AppraisalRepository extends JpaRepository<Appraisal, Integer> {
     List<Appraisal> findByEmployee(Employee employee);
+
+    void deleteByEmployee(Employee employee);
 }

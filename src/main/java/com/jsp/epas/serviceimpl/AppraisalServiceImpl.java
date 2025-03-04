@@ -11,6 +11,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -32,8 +33,21 @@ public class AppraisalServiceImpl implements AppraisalService {
     public Appraisal createAppraisal(int employeeId, Rating suggestedRating) {
         Employee employee = employeeRepository.findById(employeeId)
                 .orElseThrow(() -> new EmployeeNotFoundException("Employee not found"));
-        Appraisal appraisal = new Appraisal(employee, suggestedRating);
-        return appraisalRepository.save(appraisal);
+
+        Optional<Appraisal> existingAppraisal = appraisalRepository.findByEmployee(employee)
+                .stream()
+                .findFirst();
+
+        if (existingAppraisal.isPresent()) {
+            Appraisal appraisal = existingAppraisal.get();
+            appraisal.setSuggestedRating(suggestedRating);
+            System.out.println("Updating appraisal for " + employee.getEmployeeName() + " → " + suggestedRating);
+            return appraisalRepository.save(appraisal);
+        } else {
+            System.out.println("Creating new appraisal for " + employee.getEmployeeName() + " → " + suggestedRating);
+            Appraisal newAppraisal = new Appraisal(employee, suggestedRating);
+            return appraisalRepository.save(newAppraisal);
+        }
     }
 
     public void deleteAppraisal(int appraisalId) {

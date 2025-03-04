@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @AllArgsConstructor
@@ -44,10 +45,23 @@ public class EmployeeController {
     }
 
     @DeleteMapping("/employee/{employeeId}")
-    public ResponseEntity<ResponseStructure<EmployeeResponse>> updateEmployeeById(@PathVariable int employeeId){
-        EmployeeResponse  employeeResponse = employeeService.deleteEmployeeById(employeeId);
-        return responseBuilder.success(HttpStatus.OK, "Employee Deleted", employeeResponse);
+    public ResponseEntity<ResponseStructure<String>> deleteEmployeeById(@PathVariable int employeeId){
+        employeeService.deleteEmployeeById(employeeId);
+        return responseBuilder.success(HttpStatus.OK, "Employee Deleted", "Employee with ID " + employeeId + " has been deleted.");
     }
+
+    @PutMapping("/employee/{id}/rating")
+    public ResponseEntity<ResponseStructure<EmployeeResponse>> updateEmployeeRating(
+            @PathVariable int id, @RequestBody Map<String, String> request) {
+
+        String newRating = request.get("rating");
+        EmployeeResponse updatedEmployee = employeeService.updateEmployeeRating(id, newRating);
+        return responseBuilder.success(HttpStatus.OK, "Employee Rating Updated", updatedEmployee);
+    }
+
+
+
+
 
 
 
