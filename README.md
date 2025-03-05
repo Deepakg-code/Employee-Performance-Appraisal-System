@@ -70,7 +70,7 @@ Employee-Performance-Appraisal-System/
 ### **1️⃣ Clone the Repository**
 ```sh
 git clone https://github.com/Deepakg-code/Employee-Performance-Appraisal-System.git
-cd Employee-Performance-Appraisal-System/backend
+cd Employee-Performance-Appraisal-System/springbootbackend
 ```
 
 ### **2️⃣ Configure the Database**
