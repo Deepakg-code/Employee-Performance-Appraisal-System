@@ -28,6 +28,12 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public CategoryResponse addCategory(CategoryRequest categoryRequest) {
+
+        boolean exists = categoryRepository.existsByRating(categoryRequest.getRating());
+        if (exists) {
+            throw new IllegalArgumentException("Category with rating " + categoryRequest.getRating() + " already exists.");
+        }
+
         Category category = Category.builder()
                 .rating(categoryRequest.getRating())
                 .standardPercentage(categoryRequest.getStandardPercentage())
@@ -35,6 +41,7 @@ public class CategoryServiceImpl implements CategoryService {
         Category savedCategory = categoryRepository.save(category);
         return mapToCategoryResponse(savedCategory);
     }
+
 
     @Override
     public CategoryResponse findCategoryById(int id) {
