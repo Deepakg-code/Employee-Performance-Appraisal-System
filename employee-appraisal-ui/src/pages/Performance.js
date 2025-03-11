@@ -43,7 +43,7 @@ const Performance = () => {
           <BarChart data={formatChartData(metrics)}>
             <XAxis dataKey="category" />
             <YAxis />
-            <Tooltip />
+            <Tooltip content={<CustomTooltip />} />
             <Legend />
             <Bar dataKey="actual" fill="#4CAF50" name="Actual Percentage" />
             <Bar dataKey="standard" fill="#FF9800" name="Standard Percentage" />
@@ -76,7 +76,26 @@ const formatChartData = (metrics) => {
     category,
     actual: metrics.actualPercentages[category],
     standard: metrics.standardPercentages[category],
+    deviation: (metrics.actualPercentages[category] - metrics.standardPercentages[category]).toFixed(2),
   }));
 };
 
-export default Performance;
+// Custom Tooltip Component
+const CustomTooltip = ({ active, payload, label }) => {
+  if (active && payload && payload.length >= 2) {
+    return (
+      <div className="bg-white p-3 rounded-lg shadow-lg border border-gray-300">
+        <h4 className="font-bold text-gray-700">{label}</h4>
+        <p className="text-green-600">Actual: {payload[0]?.value}%</p>
+        <p className="text-orange-600">Standard: {payload[1]?.value}%</p>
+        <p className={`font-semibold ${payload[0]?.value - payload[1]?.value >= 0 ? 'text-blue-500' : 'text-red-500'}`}>
+          Deviation: {payload[0]?.value - payload[1]?.value}%
+        </p>
+      </div>
+    );
+  }
+  return null;
+};
+
+
+export default Performance
